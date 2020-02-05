@@ -4,13 +4,13 @@ class Compacto extends Base
 {
     public function index(){
 
-        $string = "mongodb://192.168.1.8:27017";
+        $string = "mongodb://3.20.122.140:27017";
 
         $collection = new MongoDB\Client($string);
 
         $companydb = $collection->companydb;
 
-        $result1 = $companydb->createCollection('test');
+        $result1 = $companydb->createCollection('testdesdephp');
 
         var_dump($result1);
         
