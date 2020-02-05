@@ -14,7 +14,7 @@ class Compacto extends Base
 
         var_dump($result1);
         
-        /* $this->ResponseJson($data); */
+        /* $this->ResponseJson($data); */ 
     }
 }
 
