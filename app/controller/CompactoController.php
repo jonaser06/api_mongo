@@ -2,6 +2,7 @@
 
 class Compacto extends Base
 {
+    
     public function index(){
 
         $string = "mongodb://3.20.122.140:27017";

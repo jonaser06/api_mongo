@@ -13,7 +13,7 @@ class Base
             $response->data[0] = $data;
         else:
             $response->status = 'false';
-            $response->message = 'the data is empty!';
+            $response->message = 'this data is empty!';
             $response->data = '';
         endif;
 

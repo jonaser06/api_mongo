@@ -19,6 +19,7 @@ ini_set('display_startup_errors', true);
     */
     require_once './app/controller/Base.php';
     require_once './app/controller/CompactoController.php';
+    require_once './app/controller/ServiceController.php';
 
     /* 
     * Load Routes

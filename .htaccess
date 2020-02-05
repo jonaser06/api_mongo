@@ -1,0 +1,11 @@
+# impedir que se pueda ver el listado de contenidos de un directorio
+
+Options All -Indexes
+
+# url amigables
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
