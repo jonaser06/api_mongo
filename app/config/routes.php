@@ -19,5 +19,17 @@ $app->post('/api/generate_url',function(){
     
 });
 
+$app->post('/api/tags',function(){ 
+
+    return 'Hola Mundo';
+
+    /* $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+    $title = $getbody->url;
+    $compacto = new ServiceController();
+    $compacto->generateUrl($title);  */
+    
+});
+
 $app->run();
 ?>
