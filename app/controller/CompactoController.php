@@ -11,7 +11,7 @@ class Compacto extends Base
 
         $companydb = $collection->companydb;
 
-        $result1 = $companydb->createCollection('testdesdephp');
+        $result1 = $companydb->createCollection('testdesdephp2');
 
         var_dump($result1);
         
