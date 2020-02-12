@@ -9,7 +9,7 @@ $app->get('/test',function(){
     
 });
 
-$app->post('/api/generate_url',function(){ 
+$app->post('/generate_url',function(){ 
 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
@@ -19,7 +19,7 @@ $app->post('/api/generate_url',function(){
     
 });
 
-$app->post('/api/tags',function(){ 
+$app->post('/tags',function(){ 
 
     return 'Hola Mundo';
 
