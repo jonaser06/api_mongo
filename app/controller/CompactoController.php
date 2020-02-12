@@ -9,9 +9,9 @@ class Compacto extends Base
 
         $collection = new MongoDB\Client($string);
 
-        $companydb = $collection->companydb;
+        $companydb = $collection->companydb2;
 
-        $result1 = $companydb->createCollection('testdesdephp2');
+        $result1 = $companydb->createCollection('testdesdephp');
 
         var_dump($result1);
         
