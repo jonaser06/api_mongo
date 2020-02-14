@@ -2,12 +2,12 @@
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 
-$app->get('/test',function(){ 
+/* $app->get('/test',function(){ 
 
     $compacto = new Compacto();
     $compacto->index(); 
     
-});
+}); */
 
 $app->post('/generate_url',function(){ 
 
