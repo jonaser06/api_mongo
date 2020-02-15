@@ -16,4 +16,5 @@
     echo 'imagecreatefromjpeg(): '.function_exists (imagecreatefromjpeg());
     echo 'imagecopyresized(): '.function_exists (imagecopyresized());
     echo 'imagejpeg(): '.function_exists (imagejpeg());
+    echo 'move_uploaded_file(): '.function_exists (move_uploaded_file());
 ?>
