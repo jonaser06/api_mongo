@@ -19,13 +19,26 @@ $app->post('/generate_url/',function(){
     
 });
 
-$app->post('/upload_image/',function(){ 
+$app->post('/upload_image/',function(){
 
-    $request = \Slim\Slim::getInstance()->request();
+    if($_FILES['image']['name']):
+        $temp = $_FILES['image']['tmp_name'];
+        $name = $_FILES['image']['name'];
+        $name = explode(".",$name);
+        $name = $name[0];
+        $compacto = new ServiceController();
+        $compacto->generateImg($name, $temp);
+    else:
+        echo '404: No selecciono ninguna imagen.';
+        exit;
+    endif;
+
+
+    /* $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
     $title = $getbody->url;
     $compacto = new ServiceController();
-    $compacto->generateImg($title);
+    $compacto->generateImg($title); */
     
 });
 

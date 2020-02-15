@@ -28,11 +28,26 @@ class ServiceController extends Base
         endif;
     }
 
-    public function generateImg($title){
-
-        $name = $this->generateUrl($title, true);
-        echo $name;
+    public function generateImg($name, $temp){
+        $newname = $this->generateUrl($name, true).'-0x0.jpg';
+        $name = $this->generateUrl($name, true).'.jpg';
+        if($this->uploadimage($temp, $name)):
+            echo $newname;
+        else:
+            echo '404: ocurrio un error.';
+        endif;
         
+    }
+
+    public function uploadimage($image, $name){
+
+        $target = __DIR__.'/../../upload/'.basename($name);
+        
+        if (move_uploaded_file($image, $target)) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function imgCnd($url){
