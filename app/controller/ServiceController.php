@@ -34,7 +34,7 @@ class ServiceController extends Base
         if($this->uploadimage($temp, $name)):
             echo $newname;
         else:
-            echo '404: ocurrio un error.';
+            echo '404: ocurrio un error..';
         endif;
         
     }
