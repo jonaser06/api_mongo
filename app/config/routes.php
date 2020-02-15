@@ -9,13 +9,23 @@ $app = new \Slim\Slim();
     
 }); */
 
-$app->post('/generate_url',function(){ 
+$app->post('/generate_url/',function(){ 
 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
     $title = $getbody->url;
     $compacto = new ServiceController();
     $compacto->generateUrl($title); 
+    
+});
+
+$app->post('/upload_image/',function(){ 
+
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+    $title = $getbody->url;
+    $compacto = new ServiceController();
+    $compacto->generateImg($title);
     
 });
 
@@ -30,6 +40,9 @@ $app->post('/tags',function(){
     $compacto->generateUrl($title);  */
     
 });
+
+#cdn
+include 'cdn.php';
 
 $app->run();
 ?>

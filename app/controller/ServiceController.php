@@ -6,7 +6,7 @@ define('STR_GUION', '-');
 class ServiceController extends Base
 {
     
-    public function generateUrl($title){
+    public function generateUrl($title, $img = false){
 
         $ac2 = explode(',', 'ñ,Ñ,á,é,í,ó,ú,Á,É,Í,Ó,Ú,ä,ë,ï,ö,ü,Ä,Ë,Ï,Ö,Ü');
         $xc2 = explode(',', 'n,N,a,e,i,o,u,A,E,I,O,U,a,e,i,o,u,A,E,I,O,U');
@@ -21,7 +21,72 @@ class ServiceController extends Base
         $title = trim($title);
         
         #response
-        $this->ResponseJson($title);
+        if($img):
+            return $title;
+        else:
+            $this->ResponseJson($title);
+        endif;
+    }
+
+    public function generateImg($title){
+
+        $name = $this->generateUrl($title, true);
+        echo $name;
+        
+    }
+
+    public function imgCnd($url){
+
+        #extraer parametros
+        $exp = explode('-', $url);
+        $cuenta = count($exp) - 1;
+        $medida = $exp[$cuenta];
+
+        #extraer medidas
+        if(strpos($medida,'x')):
+            $nueva_url = '';
+            for( $i=0 ; $i < $cuenta ; $i++ ):
+                $nueva_url = $nueva_url.$exp[$i].'-';
+            endfor;
+            $lenght = strlen($nueva_url);
+            $nueva_url = substr($nueva_url,0,$lenght-1);
+
+            $exp = explode('x', $medida);
+            $width = $exp[0];
+            $height = $exp[1];
+            $size_origin = false;
+            if($width == '0' || $height == '0'):
+                $size_origin = true;
+            endif;
+
+            #buscamos imagen
+            $file_image = __DIR__.'/../../upload/'.$nueva_url.'.jpg';
+
+            #validamos si existe imagen
+            if(file_exists($file_image)):
+
+                header('Content-Type: image/jpeg');
+
+                if($size_origin):
+                    readfile($file_image);
+                    exit;
+                else:
+                    list($x, $y) = getimagesize($file_image);
+                    $thumb = imagecreatetruecolor($width,$height);
+                    $origin = imagecreatefromjpeg($file_image);
+                    imagecopyresized($thumb, $origin, 0,0,0,0,$width ,$height ,$x, $y);
+                    imagejpeg($thumb);
+                    exit;
+                endif;
+                
+            else:
+                echo '404: No se encontro la imagen.';
+                exit;
+            endif;
+            
+        else:
+            echo '404: No se encontro la medida de la imagen.';
+        endif;
     }
 }
 
