@@ -65,16 +65,16 @@ class ServiceController extends Base
             #validamos si existe imagen
             if(file_exists($file_image)):
 
-                header('Content-Type: image/jpeg');
-
                 if($size_origin):
+                    header('Content-Type: image/jpeg');
                     readfile($file_image);
                     exit;
                 else:
                     list($x, $y) = getimagesize($file_image);
                     $thumb = imagecreatetruecolor($width,$height);
                     $origin = imagecreatefromjpeg($file_image);
-                    imagecopyresized($thumb, $origin, 0,0,0,0,$width ,$height ,$x, $y);
+                    imagecopyresized($thumb, $origin, 0,0,0,0, $width ,$height ,$x, $y);
+                    header('Content-Type: image/jpeg');
                     imagejpeg($thumb);
                     exit;
                 endif;
@@ -83,7 +83,7 @@ class ServiceController extends Base
                 echo '404: No se encontro la imagen.';
                 exit;
             endif;
-            
+
         else:
             echo '404: No se encontro la medida de la imagen.';
         endif;
