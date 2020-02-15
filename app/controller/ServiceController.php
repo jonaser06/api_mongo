@@ -66,7 +66,7 @@ class ServiceController extends Base
             if(file_exists($file_image)):
 
                 if($size_origin):
-                    header('Content-Type: image/jpeg');
+                    header('Content-Type: image/png');
                     readfile($file_image);
                     exit;
                 else:
@@ -74,7 +74,7 @@ class ServiceController extends Base
                     $thumb = imagecreatetruecolor($width,$height);
                     $origin = imagecreatefromjpeg($file_image);
                     imagecopyresized($thumb, $origin, 0,0,0,0, $width ,$height ,$x, $y);
-                    header('Content-Type: image/jpeg');
+                    header('Content-Type: image/png');
                     imagejpeg($thumb);
                     exit;
                 endif;
