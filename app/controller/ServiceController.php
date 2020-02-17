@@ -29,12 +29,13 @@ class ServiceController extends Base
     }
 
     public function generateImg($name, $temp){
-        $newname = $this->generateUrl($name, true).'-0x0.jpg';
+        $newname = $this->generateUrl($name, true);
         $name = $this->generateUrl($name, true).'.jpg';
         if($this->uploadimage($temp, $name)):
             $response = new stdClass();
-            $response->path = 'http://api.bitsforcode.xyz/media/get-image/';
-            $response->img = $newname;
+            $response->base = 'http://api.bitsforcode.xyz/media/get-image/';
+            $response->imgOriginal = $newname.'-0x0.jpg';
+            $response->path = $newname;
             $this->ResponseJson($response);
         else:
             echo '404: ocurrio un error..';
