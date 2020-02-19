@@ -31,15 +31,7 @@ $app->post('/upload_image/',function(){
     else:
         echo '404: No selecciono ninguna imagen.';
         exit;
-    endif;
-
-
-    /* $request = \Slim\Slim::getInstance()->request();
-    $getbody = json_decode($request->getBody());
-    $title = $getbody->url;
-    $compacto = new ServiceController();
-    $compacto->generateImg($title); */
-    
+    endif;    
 });
 
 $app->post('/tags',function(){ 
@@ -54,6 +46,9 @@ $app->post('/tags',function(){
     
 });
 
+$app->post('/categorias',function(){ 
+
+});
 #cdn
 include 'cdn.php';
 
