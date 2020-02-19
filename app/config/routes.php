@@ -46,10 +46,23 @@ $app->post('/tags',function(){
     
 });
 
+$app->post('/categorias',function(){ 
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+    $database = $getbody->database;
+
+    /* echo 'bien';
+    exit; */
+    $compacto = new Categorias();
+    $compacto->set();
+    /* echo 'voy a crear la database: '. $database; */
+});
+
 $app->get('/categorias',function(){ 
     $compacto = new Categorias();
     $compacto->test(); 
 });
+
 #cdn
 include 'cdn.php';
 
