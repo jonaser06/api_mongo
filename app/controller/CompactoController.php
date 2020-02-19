@@ -1,7 +1,16 @@
 <?php
 
-class Compacto extends Base
+class Compacto extends Base implements iTemplate
 {
+    public function set(){
+
+    }
+    public function get(){
+        
+    }
+    public function del(){
+
+    }
     
     public function index(){
 
@@ -20,8 +29,11 @@ class Compacto extends Base
 
     public function test(){
 
-        $this->mongoTest();
-        echo 'OK';
+        $client = $this->mongoTest();
+
+        foreach ($client->listDatabases() as $databaseInfo) {
+            echo $databaseInfo->getName().'<br>';
+        }
     }
 }
 

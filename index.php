@@ -27,11 +27,17 @@ define('MONGO_PORT', getenv('MONGO_PORT') );
 require_once './app/config/db.php';
 
 /* 
+* Load Interface
+*/
+require_once './app/interface/templateInterface.php';
+
+/* 
 * Load Controller
 */
 require_once './app/controller/Base.php';
 require_once './app/controller/CompactoController.php';
 require_once './app/controller/ServiceController.php';
+require_once './app/controller/CategoriasController.php';
 
 /* 
 * Load Routes

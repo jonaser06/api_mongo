@@ -27,9 +27,11 @@ class Base
 
         $collection = new MongoDB\Client($string);
 
-        $companydb = $collection->companydb2;
+        return $collection;
 
-        var_dump($companydb);
+        /* $companydb = $collection->companydb2;
+
+        var_dump($companydb) */;
 
         /* $result1 = $companydb->createCollection('testdesdephp'); */
     }

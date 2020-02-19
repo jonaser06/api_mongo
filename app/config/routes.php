@@ -47,7 +47,7 @@ $app->post('/tags',function(){
 });
 
 $app->get('/categorias',function(){ 
-    $compacto = new Compacto();
+    $compacto = new Categorias();
     $compacto->test(); 
 });
 #cdn
