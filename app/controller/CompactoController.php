@@ -17,6 +17,12 @@ class Compacto extends Base
         
         /* $this->ResponseJson($data); */ 
     }
+
+    public function test(){
+
+        $this->mongoTest();
+        echo 'OK';
+    }
 }
 
 ?>

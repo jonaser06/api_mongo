@@ -20,6 +20,19 @@ class Base
         echo json_encode($response);
         exit;
     }
+
+    public function mongoTest(){
+
+        $string = "mongodb://".MONGO_HOST.":".MONGO_PORT;
+
+        $collection = new MongoDB\Client($string);
+
+        $companydb = $collection->companydb2;
+
+        var_dump($companydb);
+
+        /* $result1 = $companydb->createCollection('testdesdephp'); */
+    }
 }
 
 ?>
