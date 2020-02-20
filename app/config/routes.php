@@ -2,12 +2,6 @@
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 
-/* $app->get('/test',function(){ 
-
-    $compacto = new Compacto();
-    $compacto->index(); 
-    
-}); */
 
 $app->post('/generate_url/',function(){ 
 
@@ -49,25 +43,24 @@ $app->post('/tags',function(){
 $app->post('/categorias',function(){ 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-    $database = $getbody->database;
+    /* $database = $getbody->database; */
+    
+    $data = [
+        "id"            => $getbody->id,
+        "status"        => $getbody->status,
+        "descripcion"   => $getbody->descripcion,
+        "titulo"        => $getbody->titulo,
+        "url"           => $getbody->url
+    ];
 
-    /* echo 'bien';
-    exit; */
-    $compacto = new Categorias();
-    $compacto->set();
-    /* echo 'voy a crear la database: '. $database; */
+    $categoria = new Categorias;
+    $categoria->set($data);
+    /* $compacto->set(); */
 });
 
 $app->get('/categorias',function(){ 
     $compacto = new Categorias();
     $compacto->test(); 
-});
-
-$app->post('/categorias',function(){ 
-    $param = 'devBFCa';
-    $categoria = new Categorias;
-    $categoria->set($param);
-    /* $compacto->set(); */
 });
 #cdn
 include 'cdn.php';

@@ -1,7 +1,8 @@
 <?php
 class Categorias extends Base implements iTemplate
 {   
-    public function set($param = ''){
+    public function set($data = ''){
+        $param = 'devBFC';
 
         $create = true;
 
@@ -10,16 +11,28 @@ class Categorias extends Base implements iTemplate
         foreach ($client->listDatabases() as $databaseInfo) {
             if( $databaseInfo->getName() == $param ):
                 $create = false;
-                echo 'Ya existe';
+
+                # if exist, we insert to collection
+                $this->insertCollection($data);
+
                 break;
             endif;
         }
-        if($create){
-            echo 'Creado';
+
+        if($create):
+
             $db = $client->$param;
-            $result1 = $db->createCollection('testdesdephp');
-        }
+
+            #if not exist, create to collection
+            $collection = $db->createCollection('Categorias');
+
+            # insert to collection
+            $this->insertCollection($data);
+
+        endif;
+
     }
+
     public function get(){
 
     }
@@ -29,6 +42,18 @@ class Categorias extends Base implements iTemplate
 
     public function test(){
         echo 'Hola GET categorias';
+    }
+
+    public function insertCollection($data){
+
+        $param = 'devBFC';
+        $category = 'Categorias';
+        $client = $this->mongoTest();
+        $client = $client->$param->$category;
+
+        $insert = $client->insertOne($data);
+
+        printf("Inserted %d document(s)\n", $insert->getInsertedCount());
     }
 }
 ?>
