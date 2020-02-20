@@ -21,6 +21,9 @@ $dotenv->load();
 define('MONGO_HOST', getenv('MONGO_HOST') );
 define('MONGO_PORT', getenv('MONGO_PORT') );
 
+define('DEV_DATABASE', getenv('DEV_DATABASE') );
+define('PRO_DATABASE', getenv('PRO_DATABASE') );
+
 /* 
 * Load Config DB
 */

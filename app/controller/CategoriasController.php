@@ -1,20 +1,24 @@
 <?php
 class Categorias extends Base implements iTemplate
 {   
-    public function set(){
+    public function set($param = ''){
 
-        echo 'test';
-        exit;
+        $create = true;
 
-        /* $client = $this->mongoTest();
+        $client = $this->mongoTest();
+        
         foreach ($client->listDatabases() as $databaseInfo) {
-            if($databaseInfo->getName() == $database):
-                return 'Ya existe la BD en Mongo';
-            else:
-                return 'Se creo '. $database . ' con exito';
+            if( $databaseInfo->getName() == $param ):
+                $create = false;
+                echo 'Ya existe';
+                break;
             endif;
-        } */
-
+        }
+        if($create){
+            echo 'Creado';
+            $db = $client->$param;
+            $result1 = $db->createCollection('testdesdephp');
+        }
     }
     public function get(){
 
@@ -22,9 +26,9 @@ class Categorias extends Base implements iTemplate
     public function del(){
 
     }
-    
+
     public function test(){
-        echo 'Hola desde categorias controller';
+        echo 'Hola GET categorias';
     }
 }
 ?>
