@@ -50,6 +50,13 @@ $app->get('/categorias',function(){
     $compacto = new Categorias();
     $compacto->test(); 
 });
+
+$app->post('/categorias',function(){ 
+    $param = 'devBFCa';
+    $categoria = new Categorias;
+    $categoria->set($param);
+    /* $compacto->set(); */
+});
 #cdn
 include 'cdn.php';
 
