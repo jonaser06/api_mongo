@@ -48,7 +48,6 @@ class Categorias extends Base implements iTemplate
         $db = self::$param;
         $collection = self::$category;
         $response = [];
-        $data = '';
 
         $client = $this->mongoConnet();
         $client = $client->$db->$collection;
