@@ -31,6 +31,15 @@ class Base
 
     }
 
+    public function memcached(){
+
+        $mem = new Memcached();
+
+        $mem->addServer(MONGO_HOST, 11211);
+
+        return $mem;
+    }
+
     public function autoIncrement($db, $collection){
 
         $client = $this->mongoConnet();
@@ -40,7 +49,6 @@ class Base
         $count = $client->count();
 
         return $count;
-
 
     }
 }

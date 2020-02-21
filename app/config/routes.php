@@ -43,7 +43,7 @@ $app->post('/categorias',function(){
     $category = 'Categorias';
 
     $cid = new Base();
-    $cid = $cid->autoIncrement($param, $category);
+    $cid = $cid->autoIncrement($param, $category) + 1;
 
     
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
