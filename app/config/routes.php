@@ -31,31 +31,33 @@ $app->post('/upload_image/',function(){
 $app->post('/tags',function(){ 
 
     return 'Hola Mundo';
-
-    /* $request = \Slim\Slim::getInstance()->request();
-    $getbody = json_decode($request->getBody());
-    $title = $getbody->url;
-    $compacto = new ServiceController();
-    $compacto->generateUrl($title);  */
     
 });
 
-$app->post('/categorias',function(){ 
+$app->post('/categorias',function(){
+
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-    /* $database = $getbody->database; */
+
+    $param = DEV_DATABASE;
+    $category = 'Categorias';
+
+    $cid = new Base();
+    $cid = $cid->autoIncrement($param, $category);
+
     
-    $data = [
-        "id"            => $getbody->id,
-        "status"        => $getbody->status,
-        "descripcion"   => $getbody->descripcion,
-        "titulo"        => $getbody->titulo,
-        "url"           => $getbody->url
-    ];
+    if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
+        $data = [
+            "cid"           => $cid,
+            "status"        => $getbody->status,
+            "descripcion"   => $getbody->descripcion,
+            "titulo"        => $getbody->titulo,
+            "url"           => $getbody->url
+        ];
+    endif;
 
     $categoria = new Categorias;
     $categoria->set($data);
-    /* $compacto->set(); */
 });
 
 $app->get('/categorias',function(){ 

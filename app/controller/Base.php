@@ -2,14 +2,14 @@
 
 class Base
 {
-    public function ResponseJson($data = ''){
+    public function ResponseJson($data = '', $message = 'Find One!'){
 
         header('Content-Type: application/json');
         $response = new stdClass();
         #validation
         if($data):
             $response->status = 'true';
-            $response->message = 'Find One!';
+            $response->message = $message;
             $response->data[0] = $data;
         else:
             $response->status = 'false';
@@ -21,7 +21,7 @@ class Base
         exit;
     }
 
-    public function mongoTest(){
+    public function mongoConnet(){
 
         $string = "mongodb://".MONGO_HOST.":".MONGO_PORT;
 
@@ -29,11 +29,19 @@ class Base
 
         return $collection;
 
-        /* $companydb = $collection->companydb2;
+    }
 
-        var_dump($companydb) */;
+    public function autoIncrement($db, $collection){
 
-        /* $result1 = $companydb->createCollection('testdesdephp'); */
+        $client = $this->mongoConnet();
+
+        $client = $client -> $db -> $collection;
+
+        $count = $client->count();
+
+        return $count;
+
+
     }
 }
 

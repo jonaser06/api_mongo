@@ -1,17 +1,23 @@
 <?php
 class Categorias extends Base implements iTemplate
 {   
+    public static $param = DEV_DATABASE;
+    public static $category = 'Categorias';
+    public static $create = true;
+
+
+    /**
+     * Display a listing of the resource.
+     * @template of interface\templateInterface
+     * @param $data String param
+     */
     public function set($data = ''){
-        $param = 'devBFC';
 
-        $create = true;
+        $client = $this->mongoConnet();
 
-        $client = $this->mongoTest();
-        
         foreach ($client->listDatabases() as $databaseInfo) {
-            if( $databaseInfo->getName() == $param ):
-                $create = false;
-
+            if( $databaseInfo->getName() == self::$param ):
+                self::$create = false;
                 # if exist, we insert to collection
                 $this->insertCollection($data);
 
@@ -33,27 +39,44 @@ class Categorias extends Base implements iTemplate
 
     }
 
+    /**
+     * Display a listing of the resource.
+     * @template of interface\templateInterface
+     * @param 
+     */
     public function get(){
 
     }
+
+    /**
+     * Display a listing of the resource.
+     * @template of interface\templateInterface
+     * @param 
+     */
     public function del(){
 
     }
 
+    /**
+     * Display a listing of the resource.
+     * @template of interface\templateInterface
+     * @param 
+     */
     public function test(){
         echo 'Hola GET categorias';
     }
 
     public function insertCollection($data){
 
-        $param = 'devBFC';
-        $category = 'Categorias';
-        $client = $this->mongoTest();
-        $client = $client->$param->$category;
+        $db = self::$param;
+        $collection = self::$category;
 
+        $client = $this->mongoConnet();
+        $client = $client->$db->$collection;
         $insert = $client->insertOne($data);
 
-        printf("Inserted %d document(s)\n", $insert->getInsertedCount());
+        $this->ResponseJson($data,'Inserted '.$insert->getInsertedCount().' document(s)!');
+
     }
 }
 ?>

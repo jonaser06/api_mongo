@@ -1,20 +1,13 @@
 <?php
-/* 
-* Load Composer
-*/
-    require_once './vendor/autoload.php';
+$mem = new Memcached();
+$mem->addServer(getenv('MONGO_HOST'), 11211);
 
-    $dotenv = new Dotenv\Dotenv(__DIR__);
-    $dotenv->load();
+$result = $mem->get("blah");
 
-    $test  =  "SERVER NAME: ".getenv('MONGO_HOST');
-    $test .=  "PORT: ".getenv('MONGO_PORT');
-
-    echo $test;
-    /* echo 'getimagesize(): '.function_exists (getimagesize());
-    echo 'imagecreatetruecolor(): '.function_exists (imagecreatetruecolor());
-    echo 'imagecreatefromjpeg(): '.function_exists (imagecreatefromjpeg());
-    echo 'imagecopyresized(): '.function_exists (imagecopyresized());
-    echo 'imagejpeg(): '.function_exists (imagejpeg());
-    echo 'move_uploaded_file(): '.function_exists (move_uploaded_file()); */
+if ($result) {
+    echo $result;
+} else {
+    echo "No matching key found.  I'll add that now!";
+    $mem->set("blah", "I am data!  I am held in memcached!") or die("Couldn't save anything to memcached...");
+}
 ?>
