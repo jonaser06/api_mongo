@@ -1,0 +1,17 @@
+version: '3'
+services:
+    web_server:
+        build: .
+        ports:
+            - 8080:80
+        restart: always
+        volumes:
+            - .:/var/www/
+        networks:
+            - FrontEnd
+            - BackEnd
+networks:
+    FrontEnd:
+        driver: bridge
+    BackEnd:
+        driver: bridge

@@ -48,6 +48,7 @@ class Categorias extends Base implements iTemplate
         $db = self::$param;
         $collection = self::$category;
         $response = [];
+        $data = [];
 
         $client = $this->mongoConnet();
         $client = $client->$db->$collection;
@@ -63,10 +64,10 @@ class Categorias extends Base implements iTemplate
                 "titulo"        => $categ["titulo"],
                 "url"           => $categ["url"]
             ];
-            echo json_encode($response);
+            array_push($data,$response);
         }
-        exit;
-        /* $this->ResponseJson($data); */
+        
+        $this->toJson($data);
     }
 
     /**

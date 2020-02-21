@@ -21,6 +21,25 @@ class Base
         exit;
     }
 
+    public function toJson($data = '', $message = 'Find One!'){
+
+        header('Content-Type: application/json');
+        $response = new stdClass();
+        #validation
+        if($data):
+            $response->status = 'true';
+            $response->message = $message;
+            $response->data = $data;
+        else:
+            $response->status = 'false';
+            $response->message = 'this data is empty!';
+            $response->data = '';
+        endif;
+
+        echo json_encode($response);
+        exit;
+    }
+
     public function mongoConnet(){
 
         $string = "mongodb://".MONGO_HOST.":".MONGO_PORT;
