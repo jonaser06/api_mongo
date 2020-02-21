@@ -62,7 +62,7 @@ $app->post('/categorias',function(){
 
 $app->get('/categorias',function(){ 
     $compacto = new Categorias();
-    $compacto->test(); 
+    $compacto->get(); 
 });
 #cdn
 include 'cdn.php';

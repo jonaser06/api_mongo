@@ -45,7 +45,29 @@ class Categorias extends Base implements iTemplate
      * @param 
      */
     public function get(){
+        $db = self::$param;
+        $collection = self::$category;
+        $response = [];
+        $data = '';
 
+        $client = $this->mongoConnet();
+        $client = $client->$db->$collection;
+
+        $getAll = $client->find();
+
+        header('Content-Type: application/json');
+        foreach($getAll as $categ){
+            $response = [
+                "cid"           => $categ["cid"],
+                "status"        => $categ["status"],
+                "descripcion"   => $categ["descripcion"],
+                "titulo"        => $categ["titulo"],
+                "url"           => $categ["url"]
+            ];
+            echo json_encode($response);
+        }
+        exit;
+        /* $this->ResponseJson($data); */
     }
 
     /**
@@ -55,15 +77,6 @@ class Categorias extends Base implements iTemplate
      */
     public function del(){
 
-    }
-
-    /**
-     * Display a listing of the resource.
-     * @template of interface\templateInterface
-     * @param 
-     */
-    public function test(){
-        echo 'Hola GET categorias';
     }
 
     public function insertCollection($data){
