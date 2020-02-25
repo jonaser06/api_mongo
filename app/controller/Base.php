@@ -67,7 +67,24 @@ class Base
 
         $count = $client->count();
 
-        return $count;
+        $id = 0;
+
+        if($count == 0){
+            return $count;
+            
+        }else{
+            $client = $this->mongoConnet();
+            $client = $client -> $db -> $collection;
+            $getAll = $client->find();
+
+            foreach($getAll as $categ){
+                if($categ["cid"]> $id){
+                    $id = $categ["cid"];
+                }
+            }
+            return $id;
+        }
+        
 
     }
 }

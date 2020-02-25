@@ -75,8 +75,16 @@ class Categorias extends Base implements iTemplate
      * @template of interface\templateInterface
      * @param 
      */
-    public function del(){
+    public function del($id = ''){
 
+        $db = self::$param;
+        $collection = self::$category;
+
+        $client = $this->mongoConnet();
+        $client = $client->$db->$collection;
+        $deleteResult = $client->deleteOne(['cid' => $id]);
+        printf("Deleted %d document(s)\n", $deleteResult->getDeletedCount());
+        
     }
 
     public function insertCollection($data){

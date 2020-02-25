@@ -60,6 +60,11 @@ $app->post('/categorias',function(){
     $categoria->set($data);
 });
 
+$app->post('/categorias/delete/:id',function($id){
+    $categoria = new Categorias;
+    $categoria->del((int)$id);
+});
+
 $app->get('/categorias',function(){ 
     $compacto = new Categorias();
     $compacto->get(); 
