@@ -83,7 +83,7 @@ class Categorias extends Base implements iTemplate
         $client = $this->mongoConnet();
         $client = $client->$db->$collection;
         $deleteResult = $client->deleteOne(['cid' => $id]);
-        printf("Deleted %d document(s)\n", $deleteResult->getDeletedCount());
+        $this->toJson(' ','Categoria Eliminada');
         
     }
 
