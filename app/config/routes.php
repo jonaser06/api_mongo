@@ -34,7 +34,14 @@ $app->post('/tags',function(){
     
 });
 
-$app->post('/categorias',function(){
+$app->post('/compacto/',function(){
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+    $categoria = new Compacto;
+    $categoria->set($getbody);
+});
+
+$app->post('/categorias/',function(){
 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
