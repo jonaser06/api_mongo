@@ -44,7 +44,7 @@ class Base
 
         $string = "mongodb://".MONGO_HOST.":".MONGO_PORT;
 
-        $collection = new MongoDB\Client($string);
+        $collection = new MongoDB\Client($string);//defasada
 
         return $collection;
 
