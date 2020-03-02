@@ -12,15 +12,12 @@ class Categorias extends Base implements iTemplate
      * @param $data String param
      */
     public function set($data = ''){
-
         $client = $this->mongoConnet();
-
         foreach ($client->listDatabases() as $databaseInfo) {
             if( $databaseInfo->getName() == self::$param ):
-                self::$create = false;
+                self::$create = 0;
                 # if exist, we insert to collection
-                $this->insertCollection($data);
-
+                $this->insertCollection($data, self::$param, self::$category);
                 break;
             endif;
         }
@@ -30,10 +27,10 @@ class Categorias extends Base implements iTemplate
             $db = $client->$param;
 
             #if not exist, create to collection
-            $collection = $db->createCollection('Categorias');
+            $collection = $db->createCollection(self::$category);
 
             # insert to collection
-            $this->insertCollection($data);
+            $this->insertCollection($data, self::$param, self::$category);
 
         endif;
 
@@ -83,21 +80,9 @@ class Categorias extends Base implements iTemplate
         $client = $this->mongoConnet();
         $client = $client->$db->$collection;
         $deleteResult = $client->deleteOne(['cid' => $id]);
-        printf("Deleted %d document(s)\n", $deleteResult->getDeletedCount());
+        $this->toJson(' ','Categoria Eliminada');
         
     }
-
-    public function insertCollection($data){
-
-        $db = self::$param;
-        $collection = self::$category;
-
-        $client = $this->mongoConnet();
-        $client = $client->$db->$collection;
-        $insert = $client->insertOne($data);
-
-        $this->ResponseJson($data,'Inserted '.$insert->getInsertedCount().' document(s)!');
-
-    }
+    
 }
 ?>

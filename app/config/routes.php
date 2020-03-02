@@ -34,7 +34,32 @@ $app->post('/tags',function(){
     
 });
 
-$app->post('/categorias',function(){
+$app->post('/compacto/',function(){
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+
+    #cast object to array
+    $array   = (array)$getbody;
+
+    #define db y collection
+    $param = DEV_DATABASE;
+    $collection = 'Compacto';
+    
+    #primary key
+    $cid = new Base();
+    $cid = $cid->autoIncrement($param, $collection) + 1;
+    $cid = array("cid"=>$cid);
+
+    #merged arrays
+    $array = $cid + $array;
+
+    #insert to mongo
+    $categoria = new Compacto;
+    $categoria->set($array);
+    
+});
+
+$app->post('/categorias/',function(){
 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());

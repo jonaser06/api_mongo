@@ -84,7 +84,13 @@ class Base
             }
             return $id;
         }
-        
+    }
+    
+    public function insertCollection($data='', $db, $collection){
+        $client = $this->mongoConnet();
+        $client = $client->$db->$collection;
+        $insert = $client->insertOne($data);
+        $this->ResponseJson($data,'Inserted '.$insert->getInsertedCount().' document(s)!');
 
     }
 }
