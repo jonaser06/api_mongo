@@ -95,16 +95,16 @@ $app->post('/prueba',function(){
     echo 'Hola Mundo';
     
 });
-$app->put('/categorias/actualizo/:id',function($id){
+$app->put('/categorias/actualizo/:id',function(){
 
     $id_cliente= $request->getAttribute('id');
-    $status = $request->getParam('status');
+   /* $status = $request->getParam('status');
 
     $data = ["id"=>$id_cliente,
             "status"=>$status
-            ];
+            ];*/
 
-    echo json_encode($data);
+    echo json_encode($id_cliente);
 });
 
 $app->put('/categorias/update/:id',function($id){
