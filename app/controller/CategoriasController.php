@@ -113,8 +113,8 @@ class Categorias extends Base implements iTemplate
 
         // $match = $updateResult->getMatchedCount();
         // $numModified = $updateResult->getgetModifiedCount();
-        $this->toJson($updateResult);
-
+        // $this->toJson($updateResult);
+        echo json_encode($updateResult);
     }
 }
 ?>
