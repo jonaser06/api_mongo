@@ -90,7 +90,7 @@ $app->post('/categorias/delete/:id',function($id){
     $categoria->del((int)$id);
 });
 
-$app->put('/categorias/actualizo/:id',function($id){
+$app->post('/categorias/actualizo/:id',function($id){
     echo json_encode("actualizar".$id);
 });
 
