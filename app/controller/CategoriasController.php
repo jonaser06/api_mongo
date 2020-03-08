@@ -101,7 +101,7 @@ class Categorias extends Base implements iTemplate
          
         $client = $this->mongoConnet();
         $bulk = $client->db->collection;
-        $updateResult= $bulk ->update(['cid'=>$id],$data);
+        $updateResult= $bulk->update(['cid'=>$id],$data);
         $this->toJson(' ', 'categoria actualizada');
 
     }
