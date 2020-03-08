@@ -34,12 +34,6 @@ $app->post('/tags',function(){
     
 });
 
-$app->post('/prueba',function(){ 
-
-    return 'Hola Mundo';
-    
-});
-
 $app->post('/compacto/',function(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
@@ -96,7 +90,12 @@ $app->post('/categorias/delete/:id',function($id){
     $categoria->del((int)$id);
 });
 
-$app->post('/categorias/actualizo/:id',function($id){
+$app->post('/prueba',function(){ 
+
+    return 'Hola Mundo';
+    
+});
+$app->put('/categorias/actualizo/:id',function($id){
     echo json_encode("actualizar".$id);
 });
 
