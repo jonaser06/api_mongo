@@ -97,14 +97,20 @@ $app->post('/prueba',function(){
 });
 $app->put('/categorias/actualizo/:id',function($id){
 
-    $id_cliente= $request->getAttribute('id');
-   /* $status = $request->getParam('status');
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
 
-    $data = ["id"=>$id_cliente,
-            "status"=>$status
-            ];*/
+    if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
+        $data = [
+            "cid"           => $id,
+            "status"        => $getbody->status,
+            "descripcion"   => $getbody->descripcion,
+            "titulo"        => $getbody->titulo,
+            "url"           => $getbody->url
+        ];
+    endif;
 
-    echo json_encode($id_cliente);
+    echo json_encode($data);
 });
 
 $app->put('/categorias/update/:id',function($id){
