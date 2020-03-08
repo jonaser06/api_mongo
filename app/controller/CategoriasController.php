@@ -107,8 +107,10 @@ class Categorias extends Base implements iTemplate
         $client = $client->db->collection;
 
         $updateResult= $client->updateOne(['cid'=>$id],['$set' => $data]);
-        
-        $this->toJson(' ', 'categoria actualizada');
+
+        $match = $updateResult->getMatchedCount();
+        $numModified = $updateResult->getgetModifiedCount();
+        $this->toJson(' ', 'macth:'.$match.'modificaciones: '.$numModified);
 
     }
 }
