@@ -87,7 +87,7 @@ class Categorias extends Base implements iTemplate
     public function update($id = '',$data=''){
         $db = self::$param;
         $collection = self::$category;
-        $documents = $this->get();
+        /*$documents = $this->get();
 
         $updateDoc = [];
 
@@ -97,11 +97,11 @@ class Categorias extends Base implements iTemplate
                 $updateDoc=$data;
              }  
         
-         }
+         }*/
          
         $client = $this->mongoConnet();
         $bulk = $client->db->collection;
-        $updateResult= $bulk->update(['cid'=>$id],$updateDoc);
+        $updateResult= $bulk->update(['cid'=>$id],$data);
         $this->toJson(' ', 'categoria actualizada');
 
     }

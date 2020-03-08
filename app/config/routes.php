@@ -95,7 +95,7 @@ $app->post('/prueba',function(){
     echo 'Hola Mundo';
     
 });
-$app->put('/categorias/actualizo/:id',function(){
+$app->put('/categorias/actualizo/:id',function($id){
 
     $id_cliente= $request->getAttribute('id');
    /* $status = $request->getParam('status');
