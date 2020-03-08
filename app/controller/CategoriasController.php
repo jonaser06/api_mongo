@@ -102,18 +102,23 @@ class Categorias extends Base implements iTemplate
         
          }*/
             
-         
-        $client = $this->mongoConnet();
-        $client = $client->db->collection;
+        try{
+            $client = $this->mongoConnet();
+            $client = $client->db->collection;
+            
+                $updateResult = $client->updateOne(
+                ['cid' => (int)$id],
+                ['$set' => $data]
+            );
+            $match = $updateResult->getMatchedCount();
+            $numModified = $updateResult->getgetModifiedCount();
+            $this->toJson("","categoria actualizada");
 
-        $updateResult = $client->updateOne(
-            ['cid' => (int)$id],
-            ['$set' => $data]
-        );
+        } catch (MongoConnectionException $e) {
+             echo $e;
+        }
 
-        $match = $updateResult->getMatchedCount();
-        $numModified = $updateResult->getgetModifiedCount();
-        $this->toJson($match);
+        
     }
 }
 ?>

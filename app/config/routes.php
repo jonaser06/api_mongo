@@ -95,7 +95,7 @@ $app->post('/prueba',function(){
     echo 'Hola Mundo';
     
 });
-$app->put('/categorias/actualizo/:id',function($id){
+$app->post('/categorias/actualizo/:id',function($id){
 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
