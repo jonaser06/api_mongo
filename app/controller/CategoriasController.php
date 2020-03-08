@@ -87,7 +87,7 @@ class Categorias extends Base implements iTemplate
     public function actualizo($id = '',$data = ''){
         echo json_encode($data);
     }
-    public function update($id = '',$data = ''){
+    public function update($id = '' , $data = ''){
         $db = self::$param;
         $collection = self::$category;
         /*$documents = $this->get();
@@ -107,7 +107,7 @@ class Categorias extends Base implements iTemplate
             $client = $client->db->collection;
             
                 $updateResult = $client->updateOne(
-                ['cid' => (int)$id],
+                ['cid' => $id],
                 ['$set' => $data]
             );
             $match = $updateResult->getMatchedCount();
@@ -115,7 +115,7 @@ class Categorias extends Base implements iTemplate
             $this->toJson("","categoria actualizada");
 
         } catch (MongoConnectionException $e) {
-             echo $e;
+            $this->toJson("","error".$e);
         }
 
         
