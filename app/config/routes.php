@@ -102,7 +102,7 @@ $app->put('/categorias/actualizo/:id',function($id){
 
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
         $data = [
-            "cid"           => $id,
+            "cid"           => (int)$id,
             "status"        => $getbody->status,
             "descripcion"   => $getbody->descripcion,
             "titulo"        => $getbody->titulo,
@@ -120,7 +120,7 @@ $app->put('/categorias/update/:id',function($id){
 
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
         $data = [
-            "cid"           => $id,
+            "cid"           => (int)$id,
             "status"        => $getbody->status,
             "descripcion"   => $getbody->descripcion,
             "titulo"        => $getbody->titulo,
