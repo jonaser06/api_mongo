@@ -34,6 +34,12 @@ $app->post('/tags',function(){
     
 });
 
+$app->post('/prueba',function(){ 
+
+    return 'Hola Mundo';
+    
+});
+
 $app->post('/compacto/',function(){
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
