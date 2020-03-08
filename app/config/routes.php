@@ -109,8 +109,8 @@ $app->put('/categorias/actualizo/:id',function($id){
             "url"           => $getbody->url
         ];
     endif;
-
-    echo json_encode($data);
+    $categoria = new Categorias;
+    $categoria->actualizo((int)$id,$data);
 });
 
 $app->put('/categorias/update/:id',function($id){
