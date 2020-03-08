@@ -95,7 +95,7 @@ $app->put('/categorias/update/{id}',function(Request $request ,Response $respons
 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-     
+
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
         $data = [
             "cid"           => $id,
@@ -105,9 +105,9 @@ $app->put('/categorias/update/{id}',function(Request $request ,Response $respons
             "url"           => $getbody->url
         ];
     endif;
-
-    $categoria = new Categorias;
-    $categoria->update((int)$id,$data);
+    echo json_encode($data);
+    // $categoria = new Categorias;
+    // $categoria->update((int)$id,$data);
 });
 
 $app->get('/categorias',function(){ 
