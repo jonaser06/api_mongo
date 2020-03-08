@@ -92,7 +92,7 @@ $app->post('/categorias/delete/:id',function($id){
 
 $app->post('/prueba',function(){ 
 
-    return 'Hola Mundo';
+    echo 'Hola Mundo';
     
 });
 $app->put('/categorias/actualizo/:id',function($id){
@@ -101,7 +101,7 @@ $app->put('/categorias/actualizo/:id',function($id){
 
 $app->put('/categorias/update/:id',function($id){
     
-    $request = \Slim\Slim::getInstance()->request();
+    /* $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
 
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
@@ -114,7 +114,7 @@ $app->put('/categorias/update/:id',function($id){
         ];
     endif;
     $categoria = new Categorias;
-    $categoria->update((int)$id,$data);
+    $categoria->update((int)$id,$data); */
 });
 
 $app->get('/categorias',function(){ 
