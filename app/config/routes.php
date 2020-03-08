@@ -90,7 +90,7 @@ $app->post('/categorias/delete/:id',function($id){
     $categoria->del((int)$id);
 });
 
-$app->post('/categorias/update/:id',function(){
+$app->put('/categorias/update/:id',function($id){
 
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
