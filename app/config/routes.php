@@ -90,9 +90,12 @@ $app->post('/categorias/delete/:id',function($id){
     $categoria->del((int)$id);
 });
 
-$app->put('/categorias/update/{id}',function(Request $request ,Response $response){
-    $id = $request->getAttribute('id');
+$app->put('categorias/actualizo/:id',function($id){
+    echo json_encode("actualizar".$id);
+});
 
+$app->put('/categorias/update/:id',function($id){
+    
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
 
@@ -105,9 +108,8 @@ $app->put('/categorias/update/{id}',function(Request $request ,Response $respons
             "url"           => $getbody->url
         ];
     endif;
-    echo json_encode($data);
-    // $categoria = new Categorias;
-    // $categoria->update((int)$id,$data);
+    $categoria = new Categorias;
+    $categoria->update((int)$id,$data);
 });
 
 $app->get('/categorias',function(){ 
