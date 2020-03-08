@@ -92,12 +92,10 @@ $app->post('/categorias/delete/:id',function($id){
 
 $app->put('/categorias/update/{id}',function(Request $request ,Response $response){
     $id = $request->getAttribute('id');
-    
+
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-
-    $param = DEV_DATABASE;
-    $category = 'Categorias';   
+     
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
         $data = [
             "cid"           => $id,
@@ -108,7 +106,7 @@ $app->put('/categorias/update/{id}',function(Request $request ,Response $respons
         ];
     endif;
 
-    $categoria = new categorias;
+    $categoria = new Categorias;
     $categoria->update((int)$id,$data);
 });
 
