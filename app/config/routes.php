@@ -108,7 +108,7 @@ $app->post('/categorias/update/:id',function(){
     endif;
 
     $categoria = new categorias;
-    $categoria->updateCategory($data);
+    $categoria->update((int)$id,$data);
 });
 
 $app->get('/categorias',function(){ 
