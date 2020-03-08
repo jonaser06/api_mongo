@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3813602c564377e724eabeed1401407d",
+    "content-hash": "f804b3d0e7f5122d4e92dac765114da1",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -197,31 +197,34 @@
         },
         {
             "name": "mongodb/mongodb",
-            "version": "1.3.2",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "b9f35916125976533f4b1e67a4a0ee7baf1d3bb9"
+                "reference": "dc43ba25fb593d6a2988e6a535b6f5386eda5b15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/b9f35916125976533f4b1e67a4a0ee7baf1d3bb9",
-                "reference": "b9f35916125976533f4b1e67a4a0ee7baf1d3bb9",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/dc43ba25fb593d6a2988e6a535b6f5386eda5b15",
+                "reference": "dc43ba25fb593d6a2988e6a535b6f5386eda5b15",
                 "shasum": ""
             },
             "require": {
                 "ext-hash": "*",
                 "ext-json": "*",
-                "ext-mongodb": "^1.4.0",
-                "php": ">=5.5"
+                "ext-mongodb": "^1.7",
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.36 || ^6.4"
+                "phpunit/phpunit": "^5.7.27 || ^6.4 || ^8.3",
+                "sebastian/comparator": "^1.0 || ^2.0 || ^3.0",
+                "squizlabs/php_codesniffer": "^3.4",
+                "symfony/phpunit-bridge": "^4.4@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -238,12 +241,12 @@
             ],
             "authors": [
                 {
-                    "name": "Jeremy Mikola",
-                    "email": "jmikola@gmail.com"
+                    "name": "Andreas Braun",
+                    "email": "andreas.braun@mongodb.com"
                 },
                 {
-                    "name": "Derick Rethans",
-                    "email": "github@derickrethans.nl"
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com"
                 },
                 {
                     "name": "Katherine Walker",
@@ -258,7 +261,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2018-04-19T17:20:30+00:00"
+            "time": "2020-02-04T18:16:35+00:00"
         },
         {
             "name": "psr/http-message",
@@ -514,5 +517,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "platform-overrides": {
+        "ext-mongo": "1.6.16"
+    }
 }

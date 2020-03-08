@@ -4,5 +4,10 @@
         "mongodb/mongodb": "^1.2.0",
         "vlucas/phpdotenv": "^2.2",
         "guzzlehttp/guzzle": "~6.0"
+    },
+    "config": {
+        "platform": {
+            "ext-mongo": "1.6.16"
+        }
     }
 }

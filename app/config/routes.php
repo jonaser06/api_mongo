@@ -90,6 +90,27 @@ $app->post('/categorias/delete/:id',function($id){
     $categoria->del((int)$id);
 });
 
+$app->post('/categorias/update/:id',function(){
+
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+
+    $param = DEV_DATABASE;
+    $category = 'Categorias';   
+    if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
+        $data = [
+            "cid"           => $cid,
+            "status"        => $getbody->status,
+            "descripcion"   => $getbody->descripcion,
+            "titulo"        => $getbody->titulo,
+            "url"           => $getbody->url
+        ];
+    endif;
+
+    $categoria = new categorias;
+    $categoria->updateCategory($data);
+});
+
 $app->get('/categorias',function(){ 
     $compacto = new Categorias();
     $compacto->get(); 
