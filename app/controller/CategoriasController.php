@@ -107,7 +107,7 @@ class Categorias extends Base implements iTemplate
 
         $updateResult= $client->updateOne(['cid'=>$id],['$set' => $data]);
         
-        $this->toJson(' ', 'categoria actualizada');
+        $this->toJson(' ', 'categoria actualizada',$data);
 
     }
 }
