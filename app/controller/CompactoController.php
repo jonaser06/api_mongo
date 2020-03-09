@@ -46,7 +46,8 @@ class Compacto extends Base implements iTemplate
         foreach($cursor as $document){
            
             $response = [
-                "cid"           => $categ["cid"]
+                "cid"           => $document["cid"],
+                "titulo"        => $document["titulo"]
                 
             ];
             array_push($data,$response);
