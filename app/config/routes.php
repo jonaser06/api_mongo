@@ -95,23 +95,7 @@ $app->post('/prueba',function(){
     echo 'Hola Mundo';
     
 });
-$app->post('/categorias/actualizo/:id',function($id){
 
-    $request = \Slim\Slim::getInstance()->request();
-    $getbody = json_decode($request->getBody());
-
-    if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
-        $data = [
-            "cid"           => (int)$id,
-            "status"        => $getbody->status,
-            "descripcion"   => $getbody->descripcion,
-            "titulo"        => $getbody->titulo,
-            "url"           => $getbody->url
-        ];
-    endif;
-    $categoria = new Categorias;
-    $categoria->actualizo((int)$id,$data);
-});
 
 $app->put('/categorias/update/:id',function($id){
     
@@ -127,6 +111,7 @@ $app->put('/categorias/update/:id',function($id){
             "url"           => $getbody->url
         ];
     endif;
+
     $categoria = new Categorias;
     $categoria->update((int)$id,$data); 
 });

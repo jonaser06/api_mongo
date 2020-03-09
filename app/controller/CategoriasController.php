@@ -80,15 +80,17 @@ class Categorias extends Base implements iTemplate
         $client = $this->mongoConnet();
         $client = $client->$db->$collection;
         $deleteResult = $client->deleteOne(['cid' => $id]);
-        $this->toJson(' ','Categoria Eliminada');
+       
+        if($deleteResult->getDeletedCount() == 0):
+            $this->toJson(' ','No se encontro Categoria');
+           else:
+            $this->toJson(' ','Categoria Eliminada');
+           endif;
         
     }
     
-    public function actualizo($id = '',$data = ''){
-        echo json_encode($id);
-    }
+    
     public function update($id = '' ,$data = ''){
-      
             
          $db = self::$param;
          $collection = self::$category;
@@ -101,7 +103,7 @@ class Categorias extends Base implements iTemplate
          $numModified = $updateResult->getModifiedCount();
 
              if($matches == 0):
-              $this->toJson(' ',$matches.'Coincidencias');
+              $this->toJson(' ',$matches.' Coincidencias');
              else:
               $this->toJson(' ','Modificaciones: '.$numModified.' & Coincidencias: '.$matches);
              endif;
