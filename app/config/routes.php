@@ -57,6 +57,7 @@ $app->post('/compacto/',function(){
     $categoria = new Compacto;
     $categoria->set($array);
     
+    
 });
 
 $app->post('/categorias/',function(){
@@ -118,6 +119,11 @@ $app->put('/categorias/update/:id',function($id){
 
 $app->get('/categorias',function(){ 
     $compacto = new Categorias();
+    $compacto->get(); 
+});
+
+$app->get('/compacto',function(){ 
+    $compacto = new Compacto();
     $compacto->get(); 
 });
 #cdn

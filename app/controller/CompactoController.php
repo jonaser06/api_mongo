@@ -34,13 +34,28 @@ class Compacto extends Base implements iTemplate
         endif;
     }
     public function get(){
+        $db = self::$param;
+        $nameCollection = self::$compacto;
+       
+        $data = [];
+
+        $client = $this->mongoConnet();
+        $colleccion = $client->$db->nameCollection;
+
+        $cursor = $collection->find();
+        foreach($cursor as $reponse){
+           
+            array_push($data,$response);
+        }
+
+        $this->toJson($data);
         
     }
     public function del(){
 
     }
     public function update(){
-        
+
     }
     public function test(){
 
