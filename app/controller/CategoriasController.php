@@ -102,7 +102,7 @@ class Categorias extends Base implements iTemplate
         
          }*/
             
-        try{
+        
             $client = $this->mongoConnet();
             $client = $client->db->collection;
             
@@ -113,10 +113,6 @@ class Categorias extends Base implements iTemplate
             // $match = $updateResult->getMatchedCount();
             // $numModified = $updateResult->getgetModifiedCount();
             $this->toJson('','categoria actualizada');
-
-        } catch (MongoConnectionException $e) {
-            $this->toJson("","error".$e);
-        }
 
         
     }
