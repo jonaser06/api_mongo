@@ -111,8 +111,8 @@ class Categorias extends Base implements iTemplate
                 ['$set' => $data]
             );
             // $match = $updateResult->getMatchedCount();
-            // $numModified = $updateResult->getgetModifiedCount();
-            $this->toJson('','categoria actualizada');
+             $numModified = $updateResult->getModifiedCount();
+            $this->toJson(' ','categoria actualizada'.$numModified);
 
         
     }
