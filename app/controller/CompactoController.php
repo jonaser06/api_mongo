@@ -43,6 +43,8 @@ class Compacto extends Base implements iTemplate
         $colleccion = $client->$db->nameCollection;
 
         $cursor = $collection->find();
+        header('Content-Type: application/json');
+
         foreach($cursor as $document){
            
             $response = [
