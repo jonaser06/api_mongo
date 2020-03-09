@@ -106,7 +106,7 @@ class Categorias extends Base implements iTemplate
             $client = $this->mongoConnet();
             $client = $client->db->collection;
             
-             $updateResult = $client->updateOne( ["cid" => $id],['$set' => $data]);
+             $updateResult = $client->updateOne( ["cid" => 4],['$set' => $data]);
 
              $matches = $updateResult->getMatchedCount();
              $numModified = $updateResult->getModifiedCount();
