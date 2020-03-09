@@ -85,7 +85,7 @@ class Categorias extends Base implements iTemplate
     }
     
     public function actualizo($id = '',$data = ''){
-        echo json_encode($data);
+        echo json_encode($id);
     }
     public function update($id = '' , $data = ''){
         $db = self::$param;
@@ -106,16 +106,16 @@ class Categorias extends Base implements iTemplate
             $client = $this->mongoConnet();
             $client = $client->db->collection;
             
-                $updateResult = $client->updateOne(
-                ['cid' => $id],
-                ['$set' => $data]
-            );
+             $updateResult = $client->updateOne( ["cid" => $id],['$set' => $data]);
+
              $matches = $updateResult->getMatchedCount();
              $numModified = $updateResult->getModifiedCount();
-             
-            $this->toJson(' ','modificaciones: '.$numModified.'coincidencias: '.$matches);
 
-        
+             if($matches == 0):
+              $this->toJson(' ',$matches.'Coincidencias');
+             else:
+              $this->toJson(' ','Modificaciones: '.$numModified.' & Coincidencias: '.$matches);
+             endif;
     }
 }
 ?>

@@ -39,7 +39,9 @@ class Compacto extends Base implements iTemplate
     public function del(){
 
     }
-
+    public function update(){
+        
+    }
     public function test(){
 
         $client = $this->mongoTest();

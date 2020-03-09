@@ -4,6 +4,6 @@
         public function set();
         public function get();
         public function del();
-        /* public function update(); */
+        public function update(); 
     }
 ?>
