@@ -57,7 +57,7 @@ class Compacto extends Base implements iTemplate
         $this->toJson($data);
         
     }
-    public function del(){
+    public function del($id = ''){
         $db = self::$param;
         $collection = self::$compacto;
 

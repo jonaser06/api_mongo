@@ -92,8 +92,8 @@ $app->post('/categorias/delete/:id',function($id){
 });
 
 $app->post('/compacto/delete/:id',function($id){
-    $categoria = new Compacto;
-    $categoria->del((int)$id);
+    $compacto = new Compacto;
+    $compacto->del((int)$id);
 });
 
 $app->post('/prueba',function(){ 
@@ -123,8 +123,8 @@ $app->put('/categorias/update/:id',function($id){
 });
 
 $app->get('/categorias',function(){ 
-    $compacto = new Categorias();
-    $compacto->get(); 
+    $categoria = new Categorias();
+    $categoria->get(); 
 });
 
 $app->get('/compacto',function(){ 
