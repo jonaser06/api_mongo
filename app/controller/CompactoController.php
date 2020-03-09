@@ -50,7 +50,6 @@ class Compacto extends Base implements iTemplate
             $response = [
                 "cid"           => $document["cid"],
                 "titulo"        => $document["titulo"]
-                
             ];
             array_push($data,$response);
         }
@@ -59,6 +58,18 @@ class Compacto extends Base implements iTemplate
         
     }
     public function del(){
+        $db = self::$param;
+        $collection = self::$compacto;
+
+        $client = $this->mongoConnet();
+        $client = $client->$db->$collection;
+        $deleteResult = $client->deleteOne(['cid' => $id]);
+       
+        if($deleteResult->getDeletedCount() == 0):
+            $this->toJson(' ','No se encontro nota');
+           else:
+            $this->toJson(' ','nota Eliminada');
+           endif;
 
     }
     public function update(){

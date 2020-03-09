@@ -91,6 +91,11 @@ $app->post('/categorias/delete/:id',function($id){
     $categoria->del((int)$id);
 });
 
+$app->post('/compacto/delete/:id',function($id){
+    $categoria = new Categorias;
+    $categoria->del((int)$id);
+});
+
 $app->post('/prueba',function(){ 
 
     echo 'Hola Mundo';
