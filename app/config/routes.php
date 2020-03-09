@@ -92,7 +92,7 @@ $app->post('/categorias/delete/:id',function($id){
 });
 
 $app->post('/compacto/delete/:id',function($id){
-    $categoria = new Categorias;
+    $categoria = new Compacto;
     $categoria->del((int)$id);
 });
 
