@@ -36,15 +36,19 @@ class Compacto extends Base implements iTemplate
     public function get(){
         $db = self::$param;
         $nameCollection = self::$compacto;
-       
+        $response = [];
         $data = [];
 
         $client = $this->mongoConnet();
         $colleccion = $client->$db->nameCollection;
 
         $cursor = $collection->find();
-        foreach($cursor as $reponse){
+        foreach($cursor as $document){
            
+            $response = [
+                "cid"           => $categ["cid"]
+                
+            ];
             array_push($data,$response);
         }
 
