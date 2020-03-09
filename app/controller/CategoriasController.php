@@ -87,29 +87,18 @@ class Categorias extends Base implements iTemplate
     public function actualizo($id = '',$data = ''){
         echo json_encode($id);
     }
-    public function update($id = '' , $data = ''){
-        $db = self::$param;
-        $collection = self::$category;
-        /*$documents = $this->get();
-
-        $updateDoc = [];
-
-        foreach ($documents as $document) {
-            if($document['cid']== $id){
-
-                $updateDoc=$data;
-             }  
-        
-         }*/
+    public function update($id = '' ,$data = ''){
+      
             
-        
-            $client = $this->mongoConnet();
-            $client = $client->db->collection;
-            
-             $updateResult = $client->updateOne( ["cid" => 4],['$set' => $data]);
-
-             $matches = $updateResult->getMatchedCount();
-             $numModified = $updateResult->getModifiedCount();
+         $db = self::$param;
+         $collection = self::$category;
+ 
+         $client = $this->mongoConnet();
+         $client = $client->$db->$collection;
+         $updateResult = $client->updateOne(['cid' => $id],['$set'=>$data]);
+          
+         $matches = $updateResult->getMatchedCount();
+         $numModified = $updateResult->getModifiedCount();
 
              if($matches == 0):
               $this->toJson(' ',$matches.'Coincidencias');
