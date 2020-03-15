@@ -111,7 +111,6 @@ $app->put('/categorias/update/:id',function($id){
     
     $request = \Slim\Slim::getInstance()->request();
     $getbody = json_decode($request->getBody());
-    header('Access-Control-Allow-Origin:*'); 
 
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
         $data = [
