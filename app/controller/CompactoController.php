@@ -83,6 +83,7 @@ class Compacto extends Base implements iTemplate
           
          $matches = $updateResult->getMatchedCount();
          $numModified = $updateResult->getModifiedCount();
+         header('Content-Type: application/json');
 
              if($matches == 0):
               $this->toJson(' ',$matches.' Coincidencias');
