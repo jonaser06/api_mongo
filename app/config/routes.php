@@ -96,12 +96,16 @@ $app->post('/compacto/delete/:id',function($id){
     $compacto->del((int)$id);
 });
 
-$app->post('/prueba',function(){ 
+#PUT
 
-    echo 'Hola Mundo';
-    
+$app->put('compacto/update/:id', function($id,$data){
+
+    $request = \Slim\Slim::getInstance()->request();
+    $getbody = json_decode($request->getBody());
+
+    $compacto = new Compacto;
+    $compacto->update((int)$id ,$data);
 });
-
 
 $app->put('/categorias/update/:id',function($id){
     
@@ -122,6 +126,7 @@ $app->put('/categorias/update/:id',function($id){
     $categoria->update((int)$id,$data); 
 });
 
+#GET
 $app->get('/categorias',function(){ 
     $categoria = new Categorias();
     $categoria->get(); 

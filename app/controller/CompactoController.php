@@ -72,8 +72,24 @@ class Compacto extends Base implements iTemplate
            endif;
 
     }
-    public function update(){
+    public function update($id = '' ,$data = ''){
+         
+         $db = self::$param;
+         $collection = self::$compacto;
+ 
+         $client = $this->mongoConnet();
+         $client = $client->$db->$collection;
+         $updateResult = $client->updateOne(['cid' => $id],['$set'=>$data]);
+          
+         $matches = $updateResult->getMatchedCount();
+         $numModified = $updateResult->getModifiedCount();
 
+             if($matches == 0):
+              $this->toJson(' ',$matches.' Coincidencias');
+             else:
+              $this->toJson(' ','Modificaciones: '.$numModified.' & Coincidencias: '.$matches);
+             endif;
+        
     }
     public function test(){
 
