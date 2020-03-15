@@ -40,11 +40,10 @@ class Compacto extends Base implements iTemplate
         $data = [];
 
         $client = $this->mongoConnet();
-        $colleccion = $client->$db->nameCollection;
-
-        $cursor = $collection->find();
+        $colleccion = $client->$db->$nameCollection;
+        
+        $cursor = $colleccion->find();
         header('Content-Type: application/json');
-
         foreach($cursor as $document){
            
             $response = [
@@ -53,7 +52,6 @@ class Compacto extends Base implements iTemplate
             ];
             array_push($data,$response);
         }
-
         $this->toJson($data);
         
     }
