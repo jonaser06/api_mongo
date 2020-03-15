@@ -1,5 +1,5 @@
 <?php
-// header('Access-Control-Allow-Origin:*'); 
+header('Access-Control-Allow-Origin:*'); 
 header('Access-Control-Allow-Headers:X-Request-With');
 
 header('Access-Control-Allow-Methods: GET, POST, PUT, OPTIONS');
