@@ -51,18 +51,16 @@ class Categorias extends Base implements iTemplate
         $client = $client->$db->$collection;
 
         $getAll = $client->find();
-        var_dump($getAll);
-        exit;
         header('Content-Type: application/json');
         foreach($getAll as $categ){
-            /* $response = [
+            $response = [
                 "cid"           => $categ["cid"],
                 "status"        => $categ["status"],
                 "descripcion"   => $categ["descripcion"],
                 "titulo"        => $categ["titulo"],
                 "url"           => $categ["url"]
             ];
-            array_push($data,$response); */
+            array_push($data,$response);
         }
         
         $this->toJson($data);
