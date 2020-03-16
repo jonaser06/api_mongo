@@ -72,10 +72,9 @@ $app->post('/categorias/',function(){
     $cid = $cid->autoIncrement($param, $category) + 1;
 
     
-    if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
+    if( isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
         $data = [
             "cid"           => $cid,
-            "status"        => $getbody->status,
             "descripcion"   => $getbody->descripcion,
             "titulo"        => $getbody->titulo,
             "url"           => $getbody->url
@@ -115,7 +114,6 @@ $app->put('/categorias/update/:id',function($id){
     if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
         $data = [
             "cid"           => (int)$id,
-            "status"        => $getbody->status,
             "descripcion"   => $getbody->descripcion,
             "titulo"        => $getbody->titulo,
             "url"           => $getbody->url
