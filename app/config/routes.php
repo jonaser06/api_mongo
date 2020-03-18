@@ -109,19 +109,10 @@ $app->put('compacto/update/:id', function($id,$data){
 $app->put('/categorias/update/:id',function($id){
     
     $request = \Slim\Slim::getInstance()->request();
-    $getbody = json_decode($request->getBody());
-
-    if( isset($getbody->status) && isset($getbody->descripcion) && isset($getbody->titulo) && isset($getbody->url) ): 
-        $data = [
-            "cid"           => (int)$id,
-            "descripcion"   => $getbody->descripcion,
-            "titulo"        => $getbody->titulo,
-            "url"           => $getbody->url
-        ];
-    endif;
+    $getbody = (array)json_decode($request->getBody());
 
     $categoria = new Categorias;
-    $categoria->update((int)$id,$data); 
+    $categoria->update((int)$id,$getbody); 
 });
 
 #GET
