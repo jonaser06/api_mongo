@@ -33,40 +33,58 @@ class Compacto extends Base implements iTemplate
 
         endif;
     }
-    public function get(){
-        $db = self::$param;
+    public function get($page=1){
         $nameCollection = self::$compacto;
-        $response = [];
-        $data = [];
+        $db         = self::$param;
+        $response   = [];
+        $data       = [];
 
-        $client = $this->mongoConnet();
+        
+        $client     = $this->mongoConnet();
         $collection = $client->$db->$nameCollection;
 
-        $cursor = $collection->find();
-        header('Content-Type: application/json');
+        #formulando consulta
+        $total      = $collection->count();
+        $forPage    = 5;
+        $pagination = ceil($total/$forPage);
+        $current   = ((int)$page-1)*$forPage;
 
-        foreach($cursor as $document){
-           
-            $response = [
-                "cid"           => $document["cid"],
-                "titulo"        => $document["titulo"],
-                "titulo_seo"    => $document["titulo_seo"],
-                "bajada"        => $document["bajada"],
-                "url"           => $document["url"],
-                "contenido"     => $document["contenido"],
-                "categoria"     => $document["categoria"],
-                "img"           => $document["img"],
-                "video"         => $document["video"],
-                "publicidad"    => $document["publicidad"],
-                "fecha"         => $document["fecha"],
-                "tags"          => $document["tags"],
-                "tipo"          => $document["tipo"]
-            ];
-            array_push($data,$response);
-        }
+        $query   = [];
+        $options = ['limit' => $forPage, 'sort'=>['cid' => -1], 'skip'=>$current];
 
-        $this->toJson($data);
-        
+        if($page <= $pagination):
+            $cursor = $collection->find($query, $options);
+            header('Content-Type: application/json');
+    
+    
+            foreach($cursor as $document){
+               
+                $response = [
+                    "cid"           => $document["cid"],
+                    "titulo"        => $document["titulo"],
+                    "titulo_seo"    => $document["titulo_seo"],
+                    "bajada"        => $document["bajada"],
+                    "url"           => $document["url"],
+                    "contenido"     => $document["contenido"],
+                    "categoria"     => $document["categoria"],
+                    "img"           => $document["img"],
+                    "video"         => $document["video"],
+                    "publicidad"    => $document["publicidad"],
+                    "fecha"         => $document["fecha"],
+                    "tags"          => $document["tags"],
+                    "tipo"          => $document["tipo"]
+                ];
+                array_push($data,$response);
+            }
+
+            #controls
+            $next_page    = ( (int)$page + 1 ) <= ( $pagination ) ? ( (int)$page + 1 ) : false;
+            $previus_page = ( (int)$page - 1 ) <= 0 ? false : ( (int)$page - 1 ) ;
+    
+            $this->toJson($data, null, $next_page, $previus_page);
+        else:
+            $this->toJson();
+        endif;
     }
 
     public function getid($id = ''){
@@ -75,10 +93,13 @@ class Compacto extends Base implements iTemplate
         $response = [];
         $data = [];
 
+        $query = ['cid' => $id];
+        $options = ['sort' => ['timestamp' => 1]];
+
         $client = $this->mongoConnet();
         $collection = $client->$db->$nameCollection;
 
-        $cursor = $collection->find(['cid' => $id]);
+        $cursor = $collection->find($query, $options);
         header('Content-Type: application/json');
 
         foreach($cursor as $document){

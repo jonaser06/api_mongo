@@ -121,9 +121,14 @@ $app->get('/categorias',function(){
     $categoria->get(); 
 });
 
-$app->get('/compacto',function(){ 
+$app->get('/compacto',function(){
+    if(isset($_GET['page'])):
+        $page = $_GET['page'];
+    else:
+        $page = 1;
+    endif;
     $compacto = new Compacto();
-    $compacto->get(); 
+    $compacto->get($page); 
 });
 
 $app->get('/compacto/:id',function($id){ 

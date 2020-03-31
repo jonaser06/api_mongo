@@ -21,14 +21,16 @@ class Base
         exit;
     }
 
-    public function toJson($data = '', $message = 'Find One!'){
-
+    public function toJson($data = '', $message=null, $next_page=false, $previus_page=false){
+        $message = $message??'Find One!';
         header('Content-Type: application/json');
         $response = new stdClass();
         #validation
         if($data):
             $response->status = 'true';
             $response->message = $message;
+            $response->next_page = $next_page;
+            $response->previus_page = $previus_page;
             $response->data = $data;
         else:
             $response->status = 'false';
