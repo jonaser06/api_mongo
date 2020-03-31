@@ -122,10 +122,15 @@ $app->get('/categorias',function(){
 });
 
 $app->get('/compacto',function(){ 
-
     $compacto = new Compacto();
     $compacto->get(); 
 });
+
+$app->getid('/compacto/:id',function($id){ 
+    $compacto = new Compacto();
+    $compacto->getid((int)$id); 
+});
+
 #cdn
 include 'cdn.php';
 

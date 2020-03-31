@@ -68,6 +68,43 @@ class Compacto extends Base implements iTemplate
         $this->toJson($data);
         
     }
+
+    public function getid($id = ''){
+        $db = self::$param;
+        $nameCollection = self::$compacto;
+        $response = [];
+        $data = [];
+
+        $client = $this->mongoConnet();
+        $collection = $client->$db->$nameCollection;
+
+        $cursor = $collection->find(['cid' => $id]);
+        header('Content-Type: application/json');
+
+        foreach($cursor as $document){
+           
+            $response = [
+                "cid"           => $document["cid"],
+                "titulo"        => $document["titulo"],
+                "titulo_seo"    => $document["titulo_seo"],
+                "bajada"        => $document["bajada"],
+                "url"           => $document["url"],
+                "contenido"     => $document["contenido"],
+                "categoria"     => $document["categoria"],
+                "img"           => $document["img"],
+                "video"         => $document["video"],
+                "publicidad"    => $document["publicidad"],
+                "fecha"         => $document["fecha"],
+                "tags"          => $document["tags"],
+                "tipo"          => $document["tipo"]
+            ];
+            array_push($data,$response);
+        }
+
+        $this->toJson($data);
+        
+    }
+
     public function del($id = ''){
         $db = self::$param;
         $collection = self::$compacto;
