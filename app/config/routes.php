@@ -126,7 +126,7 @@ $app->get('/compacto',function(){
     $compacto->get(); 
 });
 
-$app->getid('/compacto/:id',function($id){ 
+$app->get('/compacto/:id',function($id){ 
     $compacto = new Compacto();
     $compacto->getid((int)$id); 
 });
