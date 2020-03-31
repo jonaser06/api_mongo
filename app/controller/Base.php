@@ -21,7 +21,7 @@ class Base
         exit;
     }
 
-    public function toJson($data = '', $message=null, $next_page=false, $previus_page=false){
+    public function toJson($data = '', $message=null, $next_page=false, $previus_page=false, $current=false){
         $message = $message??'Find One!';
         header('Content-Type: application/json');
         $response = new stdClass();
@@ -29,6 +29,7 @@ class Base
         if($data):
             $response->status = 'true';
             $response->message = $message;
+            $response->current_page = $current;
             $response->next_page = $next_page;
             $response->previus_page = $previus_page;
             $response->data = $data;

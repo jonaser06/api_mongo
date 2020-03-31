@@ -81,7 +81,7 @@ class Compacto extends Base implements iTemplate
             $next_page    = ( (int)$page + 1 ) <= ( $pagination ) ? ( (int)$page + 1 ) : false;
             $previus_page = ( (int)$page - 1 ) <= 0 ? false : ( (int)$page - 1 ) ;
     
-            $this->toJson($data, null, $next_page, $previus_page);
+            $this->toJson($data, null, $next_page, $previus_page, $page);
         else:
             $this->toJson();
         endif;
