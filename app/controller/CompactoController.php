@@ -49,7 +49,18 @@ class Compacto extends Base implements iTemplate
            
             $response = [
                 "cid"           => $document["cid"],
-                "titulo"        => $document["titulo"]
+                "titulo"        => $document["titulo"],
+                "titulo_seo"    => $document["titulo_seo"],
+                "bajada"        => $document["bajada"],
+                "url"           => $document["url"],
+                "contenido"     => $document["contenido"],
+                "categoria"     => $document["categoria"],
+                "img"           => $document["img"],
+                "video"         => $document["video"],
+                "publicidad"    => $document["publicidad"],
+                "fecha"         => $document["fecha"],
+                "tags"          => $document["tags"],
+                "tipo"          => $document["tipo"]
             ];
             array_push($data,$response);
         }
