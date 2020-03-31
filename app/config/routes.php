@@ -123,9 +123,9 @@ $app->get('/categorias',function(){
 
 $app->get('/compacto',function(){
     if(isset($_GET['page'])):
-        $page = $_GET['page'];
+        $page = (int)$_GET['page'];
     else:
-        $page = 1;
+        $page = (int)1;
     endif;
     $compacto = new Compacto();
     $compacto->get($page); 
